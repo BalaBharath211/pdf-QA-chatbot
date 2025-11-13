@@ -1,0 +1,21 @@
+streamlit==1.35.0
+
+# --- LangChain ---
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-text-splitters==0.3.0
+
+# --- Gemini / Google API ---
+google-generativeai==0.8.3
+langchain-google-genai==3.0.3
+
+# --- Local Embedding ---
+sentence-transformers==3.0.1
+faiss-cpu==1.8.0.post1
+
+# --- PDF Loader ---
+pypdf==4.2.0
+
+# --- Utilities ---
+python-dotenv==1.0.1
+numpy==1.26.4
