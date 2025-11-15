@@ -192,8 +192,8 @@ Automatically detects query type and adapts processing:
 |--------|-------|
 | **Query Response Time** | 3-6 seconds |
 | **Simple Factual Accuracy** | 95% |
-| **Comparison Query Success** | 85% ⬆️ (vs 40% baseline) |
-| **Broad Topic Coverage** | 80% ⬆️ (vs 50% baseline) |
+| **Comparison Query Success** | 85% ⬆️ |
+| **Broad Topic Coverage** | 80% ⬆️ |
 | **Memory Usage** | ~1GB |
 | **Processing Speed** | ~3 sec per 100 pages |
 
@@ -207,10 +207,9 @@ pdf-rag-qa-system/
 ├── rag_core.py              # Main RAG engine (hybrid retrieval)
 ├── utils.py                 # Helper functions
 ├── requirements.txt         # Python dependencies
-├── .env.example            # Environment variables template
+├── .env                    # Environment variables template
 ├── .gitignore              # Git ignore rules
-├── README.md               # This file
-├── PROJECT_WORKFLOW.md     # Detailed technical documentation
+├── README.md               # Detailed technical documentation
 └── screenshots/            # App screenshots (optional)
     ├── upload.png
     ├── query.png
@@ -328,15 +327,6 @@ FINAL_K = 6
 
 ---
 
-## 📚 Documentation
-
-- **[PROJECT_WORKFLOW.md](PROJECT_WORKFLOW.md)** - Complete technical workflow
-- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Developer quick reference
-- **[RATE_LIMIT_GUIDE.md](RATE_LIMIT_GUIDE.md)** - API rate limit handling
-- **[IMPROVEMENTS_GUIDE.md](IMPROVEMENTS_GUIDE.md)** - Code improvements explained
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -346,12 +336,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -367,13 +351,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Your Name** - [your.email@example.com](mailto:your.email@example.com)
+**Your Name** - [veerabalabharath211@gmail.com]
 
-**Project Link:** [https://github.com/[your-username]/pdf-rag-qa-system](https://github.com/[your-username]/pdf-rag-qa-system)
+**Project Link:** [https://github.com/BalaBharath211/pdf-QA-chatbot]
 
 **Live Demo:** [[Your Streamlit Cloud Link]]([YOUR_DEMO_LINK])
 
-**LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
+**LinkedIn:** [https://www.linkedin.com/in/bala-bharath/]
 
 ---
 
