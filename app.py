@@ -10,7 +10,7 @@ from rag_core import build_vector_store, answer_query
 load_dotenv()
 
 # Try to get from environment first (.env file)
-api_key = os.getenv("GOOGLE_API_KEY")
+api_key = os.environ.get("GOOGLE_API_KEY")
 
 # If not found, try Streamlit secrets (cloud deployment)
 if not api_key:
