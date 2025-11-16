@@ -4,7 +4,7 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_DEMO_LINK)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ---
 
@@ -513,8 +513,7 @@ Contributions are welcome! Here's how to contribute:
 **Email:** veerabalabharath211@gmail.com  
 **GitHub:** https://github.com/BalaBharath211/pdf-QA-chatbot  
 **LinkedIn:** https://www.linkedin.com/in/bala-bharath/  
-**Live Demo:** [Your Streamlit Cloud Link]
-
+**Live Demo:** https://balabharath211-pdf-qa-chatbot-app-fcl1dv.streamlit.app/
 ---
 
 ## ⭐ Show Your Support
