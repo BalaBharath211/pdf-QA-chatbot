@@ -6,15 +6,23 @@ from dotenv import load_dotenv
 from rag_core import build_vector_store, answer_query
 
 # Load .env API key
+# Load API key from .env (local) or Streamlit secrets (cloud)
 load_dotenv()
+
+# Try to get from environment first (.env file)
 api_key = os.getenv("GOOGLE_API_KEY")
 
+# If not found, try Streamlit secrets (cloud deployment)
 if not api_key:
-    st.error("❌ GOOGLE_API_KEY not found in .env file")
-    st.stop()
+    try:
+        api_key = st.secrets["GOOGLE_API_KEY"]
+    except Exception:
+        st.error("❌ GOOGLE_API_KEY not found!")
+        st.error("**Local:** Add to `.env` file")
+        st.error("**Cloud:** Add to Streamlit Secrets in app settings")
+        st.stop()
 
 os.environ["GOOGLE_API_KEY"] = api_key
-
 st.set_page_config(page_title="MultiDoc Insight Engine", layout="wide", page_icon="./assets/ai.png")
 st.title("📚 Multi-PDF Q&A – Gemini RAG Agent")
 
