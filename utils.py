@@ -6,9 +6,9 @@ def load_api_key():
     if os.path.exists(".env"):
         load_dotenv()
 
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        raise ValueError("❌ GEMINI_API_KEY not found! Add it in .env or env vars.")
+        raise ValueError("❌ GOOGLE_API_KEY not found! Add it in .env or env vars.")
     return api_key
 
 

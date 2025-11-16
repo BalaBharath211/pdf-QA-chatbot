@@ -110,6 +110,9 @@ if "vector_store" in st.session_state:
                     st.error(f"Error: {str(e)}")
                     st.stop()
 
+        # Display user's question
+        st.chat_message("user").markdown(user_input)
+        
         # Display answer
         st.chat_message("assistant").markdown(answer)
 
