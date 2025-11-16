@@ -1,18 +1,17 @@
-# app.py - IMPROVED WITH RATE LIMITING
+
 import streamlit as st
 import os
 import time
 from dotenv import load_dotenv
 from rag_core import build_vector_store, answer_query
 
-# Load .env API key
-# Load API key from .env (local) or Streamlit secrets (cloud)
+
 load_dotenv()
 
-# Try to get from environment first (.env file)
+
 api_key = os.environ.get("GOOGLE_API_KEY")
 
-# If not found, try Streamlit secrets (cloud deployment)
+
 if not api_key:
     try:
         api_key = st.secrets["GOOGLE_API_KEY"]
@@ -26,7 +25,7 @@ os.environ["GOOGLE_API_KEY"] = api_key
 st.set_page_config(page_title="MultiDoc Insight Engine", layout="wide", page_icon="./assets/ai.png")
 st.title("📚 Multi-PDF Q&A – Gemini RAG Agent")
 
-# Initialize session state for rate limiting
+
 if "last_query_time" not in st.session_state:
     st.session_state.last_query_time = 0
 
@@ -36,14 +35,32 @@ if "query_count" not in st.session_state:
 if "query_cache" not in st.session_state:
     st.session_state.query_cache = {}
 
-# Sidebar
+
 with st.sidebar:
     st.subheader("📚 Upload PDFs")
     pdf_files = st.file_uploader("Upload one or more PDFs", type=["pdf"], accept_multiple_files=True)
     process_btn = st.button("⚙️ Process Documents")
 
+    st.divider()
+    st.subheader("⏱️ Rate Limit Status")
 
-# Process PDFs
+    # Ensure state variables exist
+    if "last_query_time" not in st.session_state:
+        st.session_state.last_query_time = 0
+    if "query_count" not in st.session_state:
+        st.session_state.query_count = 0
+
+    # Calculate remaining cooldown
+    time_since_last = time.time() - st.session_state.last_query_time
+    cooldown = max(0, 5 - time_since_last)
+
+    if cooldown > 0:
+        st.warning(f"🛑 Wait **{cooldown:.1f}s** before next query")
+    else:
+        st.success("✅ Ready for next query!")
+
+    st.info(f"Total questions asked: **{st.session_state.query_count}**")
+
 if process_btn:
     if not pdf_files:
         st.warning("Please upload at least one PDF first.")
@@ -63,7 +80,7 @@ if process_btn:
 
     st.success("✅ All PDFs processed! Ask your questions below.")
     
-    # Reset query stats when new docs are processed
+
     st.session_state.query_count = 0
     st.session_state.query_cache = {}
 
@@ -90,7 +107,7 @@ if "vector_store" in st.session_state:
             # Rate limiting check
             time_since_last = time.time() - st.session_state.last_query_time
             
-            # Enforce 5-second minimum delay (except for first query)
+
             if st.session_state.last_query_time > 0 and time_since_last < 5:
                 wait_time = 5 - time_since_last
                 st.warning(f"⏳ Rate limiting: waiting {wait_time:.1f} seconds...")
@@ -102,15 +119,15 @@ if "vector_store" in st.session_state:
                     progress_bar.progress((i + 1) / (wait_time * 10))
                 progress_bar.empty()
             
-            # Query the RAG system
+
             with st.spinner("🤔 Analyzing documents…"):
                 try:
                     answer, sources = answer_query(st.session_state.vector_store, user_input)
                     
-                    # Cache the answer
+
                     st.session_state.query_cache[query_hash] = (answer, sources)
                     
-                    # Update stats
+
                     st.session_state.query_count += 1
                     st.session_state.last_query_time = time.time()
                     
@@ -118,13 +135,13 @@ if "vector_store" in st.session_state:
                     st.error(f"Error: {str(e)}")
                     st.stop()
 
-        # Display user's question
+
         st.chat_message("user").markdown(user_input)
         
-        # Display answer
+
         st.chat_message("assistant").markdown(answer)
 
-        # Display sources
+
         if sources:
             with st.expander("📚 View Sources"):
                 for i, source in enumerate(sources, 1):
