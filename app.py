@@ -15,7 +15,7 @@ if not api_key:
 
 os.environ["GOOGLE_API_KEY"] = api_key
 
-st.set_page_config(page_title="PDF Q&A – Gemini RAG", layout="wide", page_icon="📚")
+st.set_page_config(page_title="MultiDoc Insight Engine", layout="wide", page_icon="./assets/ai.png")
 st.title("📚 Multi-PDF Q&A – Gemini RAG Agent")
 
 # Initialize session state for rate limiting

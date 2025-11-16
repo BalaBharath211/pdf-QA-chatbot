@@ -73,3 +73,7 @@ temp/
 # OS
 Thumbs.db
 .DS_Store
+
+tsets/quick_performance_check.py/
+tests/diagnose_pdfs.py/
+tests/test_performance.py/
