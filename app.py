@@ -23,7 +23,7 @@ if not api_key:
 
 os.environ["GOOGLE_API_KEY"] = api_key
 st.set_page_config(page_title="MultiDoc Insight Engine", layout="wide", page_icon="./assets/ai.png")
-st.title("📚 Multi-PDF Q&A – Gemini RAG Agent")
+st.title("📚 Multi-PDF Q&A system with RAG")
 
 
 if "last_query_time" not in st.session_state:
@@ -41,25 +41,7 @@ with st.sidebar:
     pdf_files = st.file_uploader("Upload one or more PDFs", type=["pdf"], accept_multiple_files=True)
     process_btn = st.button("⚙️ Process Documents")
 
-    st.divider()
-    st.subheader("⏱️ Rate Limit Status")
 
-    # Ensure state variables exist
-    if "last_query_time" not in st.session_state:
-        st.session_state.last_query_time = 0
-    if "query_count" not in st.session_state:
-        st.session_state.query_count = 0
-
-    # Calculate remaining cooldown
-    time_since_last = time.time() - st.session_state.last_query_time
-    cooldown = max(0, 5 - time_since_last)
-
-    if cooldown > 0:
-        st.warning(f"🛑 Wait **{cooldown:.1f}s** before next query")
-    else:
-        st.success("✅ Ready for next query!")
-
-    st.info(f"Total questions asked: **{st.session_state.query_count}**")
 
 if process_btn:
     if not pdf_files:
@@ -80,7 +62,6 @@ if process_btn:
 
     st.success("✅ All PDFs processed! Ask your questions below.")
     
-
     st.session_state.query_count = 0
     st.session_state.query_cache = {}
 
